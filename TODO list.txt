@@ -7,9 +7,9 @@ TODO List:
 -Add functionality of breaking the boxes with the sword
 	[]
 -Add pause of the game(and button)
-	[]
+	[Marin]
 -Add game points
-	[]
+	[Marin]
 -Add top players list
 	[]
 
