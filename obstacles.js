@@ -71,9 +71,10 @@ function createObstacle(options) {
 					var lastBox = obstacles[obstacles.length - 1];
 					this.obstacles.push(newBox);
 				}
-			} else {
-				this.obstacles.push(newBox);
-			}
+			} 
+// 			else {
+// 				this.obstacles.push(newBox);
+// 			}
 		}
 	}
 
