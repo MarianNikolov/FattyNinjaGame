@@ -9,6 +9,7 @@ TODO List:
 -Add pause of the game(and button)
 	[]
 -Add top players list
-	[]
-
+	[Daniel]
+-Add score 
+	[Daniel]
 *If someone needs more fat ninja sprites: https://image-gr.s3.envato.com/files/130370836/Preview.jpg
