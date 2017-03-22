@@ -96,4 +96,5 @@ window.addEventListener('load', function () {
 
 	gameLoop();
 	regulateSound();
+	showScores();
 });
