@@ -3,7 +3,7 @@
         let highestScore = document.getElementById('highest-score');
         let highestScoreValue = localStorage['first'];
         if (!highestScoreValue) {
-            localStorage['first'] = 0;
+            localStorage.setItem('first', 0);
         }
         highestScore.innerHTML = highestScoreValue;
         if(document.title === 'Fatty ninja game') {
@@ -22,12 +22,12 @@
 
     function increaseScore() {
         let currentScore = document.getElementById('current-score');
-        currentScore.innerHTML = +currentScore.innerHTML + 1;
+        currentScore.innerHTML = +currentScore.innerHTML + 10;
     }
 
     function updateScores(currentScore) {
         localStorage.setItem('you', currentScore);
-        if (currentScore > localStorage['first']) {
-            localStorage['first'] = currentScore;
+        if (+localStorage['you'] > +localStorage['first']) {
+            localStorage.setItem('first', currentScore);
     }
     }
