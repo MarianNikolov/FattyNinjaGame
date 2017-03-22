@@ -1,3 +1,8 @@
+@font-face {
+	font-family: myFont;
+	src: url("./bradley-hand-itc.ttf");
+	}
+
 #game-canvas-container {
 	width: 1024px;
     height: 512px;
@@ -25,10 +30,21 @@ img {
     position: relative;
 }
 
-label {
+/* label {
     position: relative;
     float: right;
     z-index: 20;
     font-size: 20px;
     padding: 10px;
+} */
+
+#scores {
+    position: relative;
+    z-index: 20;
+    padding: 10px;
+}
+
+h2, h4, p{
+    display: inline;
+    font-family: myFont;
 }
