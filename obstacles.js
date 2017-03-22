@@ -111,9 +111,9 @@ function createObstacle(options) {
 			updateScores(document.getElementById('current-score').innerHTML)
 			window.open("game-over-page.html", "_self", false);
 		}
-		else {
-			updateScore(box, ninjaPhysicalBody);
-		}
+// 		else {
+// 			updateScore(box, ninjaPhysicalBody);
+// 		}
 	}
 
 // 	let score = 0;
