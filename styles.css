@@ -22,11 +22,14 @@ canvas {
     z-index: 1
 }
 
-img {
-    width: 20px;
+#soundBtn {
     float: right;
-    z-index: 20;
     padding: 10px;
+}
+
+#soundOnImg {
+    width: 20px;
+    z-index: 30;
     position: relative;
 }
 
