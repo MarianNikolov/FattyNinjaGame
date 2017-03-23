@@ -5,7 +5,7 @@ TODO List:
 -Add obtacles under which ninja could pass
 	[]
 -Add functionality of breaking the boxes with the sword
-	[]
+	[Neven]
 -Add pause of the game(and button)
 	[]
 -Add top players list
