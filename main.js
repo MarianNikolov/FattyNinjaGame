@@ -1,14 +1,16 @@
 window.addEventListener('load', function () {
-	let gameCanvas = document.getElementById('game-canvas');
-	let gameContext = gameCanvas.getContext('2d');
+	let gameCanvas = document.getElementById('game-canvas'),
+		 gameContext = gameCanvas.getContext('2d');
 
-	let ninjaRunningImg = document.getElementById('ninja-running');
-	let ninjaJumpingImg = document.getElementById('ninja-jumping');
-	let obstacleCrateImg = document.getElementById('obstacle-crate');
-	let music = document.getElementById('music');
+	let ninjaRunningImg = document.getElementById('ninja-running'),
+		ninjaJumpingImg = document.getElementById('ninja-jumping'),
+		obstacleCrateImg = document.getElementById('obstacle-crate'),
+		music = document.getElementById('music'),
+		pauseContainer=document.getElementById('pause-container');
 
-	let gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10);
-	let crateYLine = gameCanvas.height - (obstacleCrateImg.height + 10);
+	let gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10),
+		crateYLine = gameCanvas.height - (obstacleCrateImg.height + 10),
+		isRunning=true;
 
 	let ninjaSprite = createSprite({
 		spriteSheets: [ninjaRunningImg, ninjaJumpingImg],
@@ -64,6 +66,12 @@ window.addEventListener('load', function () {
 		if (ev.keyCode === 40) {
 			ninjaPhysicalBody.speed.y = speed;
 		}
+		// p is pressed => game paused
+		if (ev.keyCode === 80) {
+			isRunning=false;
+			pauseContainer.style.display="visible";
+			console.log(pauseContainer.style.display);
+		}
 
 		//Ninja's coordinatesX to be in the canvas only
 		if ((ninjaPhysicalBody.coordinates.x > (gameWalkingLine * 2))) {
@@ -79,6 +87,7 @@ window.addEventListener('load', function () {
 
 	// I have changes here
 	function gameLoop() {
+		if(isRunning){
 		gravity.applyGravityVerticalY(ninjaPhysicalBody, 0.15);
 		gravity.removeAccelerationHorizontalX(ninjaPhysicalBody, 0.1);
 
@@ -89,8 +98,11 @@ window.addEventListener('load', function () {
 		obstacleCrateSprite.iterateObstaclesArray(ninjaPhysicalBody);
 		obstacleCrateSprite.spawnBoxHurdle();
 
+
 		background.render();
+
 		background.update();
+		}
 
 		window.requestAnimationFrame(gameLoop);
 	}

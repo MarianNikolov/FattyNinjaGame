@@ -9,6 +9,26 @@
     margin: 0px auto;
     border: 2px solid black;
 }
+#continue-button {
+    font-size: 30px;
+    font-family: myFont;
+    font-weight: bold;
+    font: black;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 15;
+    display: block;
+    padding: 5px;
+    margin-left: 430px;
+    margin-right: 400px;
+    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+    color: black;
+    background: #E8871D;
+    text-decoration: none;
+}
 
 canvas {
     position: absolute;
