@@ -68,9 +68,17 @@ window.addEventListener('load', function () {
 		}
 		// p is pressed => game paused
 		if (ev.keyCode === 80) {
-			isRunning=false;
-			pauseContainer.style.display="visible";
-			console.log(pauseContainer.style.display);
+			if(isRunning){
+				isRunning=false;
+			pauseContainer.style.display="";
+			}else{
+				isRunning=true;
+			pauseContainer.style.display="none";
+
+			}
+
+
+			;
 		}
 
 		//Ninja's coordinatesX to be in the canvas only

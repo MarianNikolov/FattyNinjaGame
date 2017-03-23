@@ -9,6 +9,17 @@
     margin: 0px auto;
     border: 2px solid black;
 }
+#pause-congtainer{
+    display: block;
+}
+
+h2.visible.header {
+    display: block;
+    position: relative;
+    z-index: 99;
+    padding-left: 350px;
+    font-size: 4em;
+}
 #continue-button {
     font-size: 30px;
     font-family: myFont;
