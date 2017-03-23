@@ -71,7 +71,7 @@ function createObstacle(options) {
 					var lastBox = obstacles[obstacles.length - 1];
 					this.obstacles.push(newBox);
 				}
-			} else {
+			}else {
 				this.obstacles.push(newBox);
 			}
 		}
@@ -97,7 +97,10 @@ function createObstacle(options) {
 			let lastObstacleCrateCoordinates = box.move();
 			this.render(box.coordinates, lastObstacleCrateCoordinates);
 			this.update();
-
+			
+			if (ninjaPhysicalBody.isBehind(box)) {
+				increaseScore();
+			}
 			collisionCheck(box, ninjaPhysicalBody);
 
 		}
@@ -105,24 +108,25 @@ function createObstacle(options) {
 
 	function collisionCheck(box, ninjaPhysicalBody) {
 		if (box.collidesWith(ninjaPhysicalBody)) {
+			updateScores(document.getElementById('current-score').innerHTML)
 			window.open("game-over-page.html", "_self", false);
 		}
-		else {
-			updateScore(box, ninjaPhysicalBody);
-		}
+// 		else {
+// 			updateScore(box, ninjaPhysicalBody);
+// 		}
 	}
 
-	let score = 0;
-	let labelElement = document.getElementById('lblScore');
-	let deviation = 1;
+// 	let score = 0;
+// 	let labelElement = document.getElementById('lblScore');
+// 	let deviation = 1;
 	
-	function updateScore(box, ninjaPhysicalBody) {
-		if (box.coordinates.x <= ninjaPhysicalBody.coordinates.x + deviation &&
-			box.coordinates.x + deviation >= ninjaPhysicalBody.coordinates.x) {
-			score += 10;
-			labelElement.innerHTML = 'Score: ' + score;
-		}
-	}
+// 	function updateScore(box, ninjaPhysicalBody) {
+// 		if (box.coordinates.x <= ninjaPhysicalBody.coordinates.x + deviation &&
+// 			box.coordinates.x + deviation >= ninjaPhysicalBody.coordinates.x) {
+// 			score += 10;
+// 			labelElement.innerHTML = 'Score: ' + score;
+// 		}
+// 	}
 
 	return obstacle;
 }

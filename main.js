@@ -77,6 +77,7 @@ window.addEventListener('load', function () {
 
 	let gravity = gameGravity(gameWalkingLine);
 
+	// I have changes here
 	function gameLoop() {
 		gravity.applyGravityVerticalY(ninjaPhysicalBody, 0.15);
 		gravity.removeAccelerationHorizontalX(ninjaPhysicalBody, 0.1);
@@ -96,4 +97,5 @@ window.addEventListener('load', function () {
 
 	gameLoop();
 	regulateSound();
+	showScores();
 });

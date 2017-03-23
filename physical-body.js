@@ -18,13 +18,22 @@ function createPhysicalBody(options) {
 		}
 	}
 
+	// checks if the ninja has gone above and past the obstacle
+	function isBehind(otherPhysicalBody) {
+		if ((this.coordinates.x) + 1 >= otherPhysicalBody.coordinates.x 
+				&& otherPhysicalBody.coordinates.x + 1 >= this.coordinates.x) {
+			return true;
+		}
+	}
+
 	let physicalBody = {
 		coordinates: options.coordinates,
 		speed: options.speed,
 		height: options.height,
 		width: options.width,
 		move: move,
-		collidesWith: collidesWith
+		collidesWith: collidesWith,
+		isBehind: isBehind
 	};
 
 	return physicalBody;
