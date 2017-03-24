@@ -22,12 +22,12 @@ function createObstacle(options) {
 	let clearOffset = 0;
 
 	function render(drawCoordinates, clearCoordinates) {
-		this.context.clearRect(
-			clearCoordinates.x - clearOffset,
-			clearCoordinates.y - clearOffset,
-			this.width + clearOffset * 2,
-			this.height + clearOffset * 2
-		);
+		// this.context.clearRect(
+		// 	clearCoordinates.x - clearOffset,
+		// 	clearCoordinates.y - clearOffset,
+		// 	this.width + clearOffset * 2,
+		// 	this.height + clearOffset * 2
+		// );
 
 		this.context.drawImage(
 			this.spriteSheet,
