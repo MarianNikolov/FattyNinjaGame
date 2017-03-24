@@ -13,7 +13,7 @@
     display: block;
 }
 
-h2.visible.header {
+#visible_header {
     display: block;
     position: relative;
     z-index: 99;

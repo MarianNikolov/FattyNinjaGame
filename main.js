@@ -6,7 +6,8 @@ window.addEventListener('load', function () {
 		ninjaJumpingImg = document.getElementById('ninja-jumping'),
 		obstacleCrateImg = document.getElementById('obstacle-crate'),
 		music = document.getElementById('music'),
-		pauseContainer=document.getElementById('pause-container');
+		pauseContainer=document.getElementById('pause-container'),
+		pauseButton=document.getElementById('continue-button');
 
 	let gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10),
 		crateYLine = gameCanvas.height - (obstacleCrateImg.height + 10),
@@ -69,16 +70,10 @@ window.addEventListener('load', function () {
 		// p is pressed => game paused
 		if (ev.keyCode === 80) {
 			if(isRunning){
-				isRunning=false;
-			pauseContainer.style.display="";
+				pauseGame('pause');
 			}else{
-				isRunning=true;
-			pauseContainer.style.display="none";
-
+				pauseGame('continue');
 			}
-
-
-			;
 		}
 
 		//Ninja's coordinatesX to be in the canvas only
@@ -88,10 +83,28 @@ window.addEventListener('load', function () {
 			ninjaPhysicalBody.speed.x = +speed * 1.3;
 		}
 	});
+	pauseButton.addEventListener("click", function(){
+   		pauseGame("continue");
+	});
 
 	let background = createBackground();
 
 	let gravity = gameGravity(gameWalkingLine);
+	function pauseGame(gameStatus){
+		switch (gameStatus) {
+			case "continue":
+				isRunning=true;
+				pauseContainer.style.display="none";
+				break;
+			case "pause":
+				isRunning=false;
+				pauseContainer.style.display="";
+			break;
+
+			default:
+				break;
+		}
+	}
 
 	// I have changes here
 	function gameLoop() {
