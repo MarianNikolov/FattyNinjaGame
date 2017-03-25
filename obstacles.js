@@ -1,7 +1,9 @@
 function createObstacle(options) {
     let obstacles = [],
         ninjaHittingImg = document.getElementById('ninja-hitting'),
-        obstacleBrocken = document.getElementById('obstacle-brocken');
+        obstacleBrocken = document.getElementById('obstacle-brocken'),
+        obstacleNormal = document.getElementById('obstacle-crate');
+
 
     let obstacle = {
         spriteSheets: options.spriteSheets,
@@ -23,16 +25,15 @@ function createObstacle(options) {
 
     let clearOffset = 0;
 
-    function render(drawCoordinates, clearCoordinates) {
+    function render(box, drawCoordinates, clearCoordinates) {
         // this.context.clearRect(
         // 	clearCoordinates.x - clearOffset,
         // 	clearCoordinates.y - clearOffset,
         // 	this.width + clearOffset * 2,
         // 	this.height + clearOffset * 2
-        // );
-
+        // )
         this.context.drawImage(
-            this.spriteSheet,
+            box.spriteSheet,
             this.frameIndex * this.width,
             0,
             this.width,
@@ -41,7 +42,7 @@ function createObstacle(options) {
             drawCoordinates.y,
             this.width,
             this.height
-        );
+        )
     }
 
     function update() {
@@ -66,6 +67,7 @@ function createObstacle(options) {
             height: this.height,
             width: this.width
         });
+        newBox.spriteSheet = obstacleNormal;
 
         if (Math.random() < spawnChance) {
             if (this.obstacles.length) {
@@ -91,16 +93,16 @@ function createObstacle(options) {
         for (i = 0; i < this.obstacles.length; i += 1) {
 
             box = this.obstacles[i];
-
             if (obstacleGarbageCollector(box, i, this.obstacles)) {
                 continue;
             }
 
             let lastObstacleCrateCoordinates = box.move();
-            obstacles[i] = hitObstaleBySwordCheck(box, ninjaPhysicalBody);
-            this.render(box.coordinates, lastObstacleCrateCoordinates);
+            if (hitObstaleBySwordCheck(box, ninjaPhysicalBody)) {
+                increaseScore(20);
+            }
+            this.render(box, box.coordinates, lastObstacleCrateCoordinates);
             this.update();
-
             if (ninjaPhysicalBody.isBehind(box)) {
                 increaseScore();
             }
@@ -121,9 +123,9 @@ function createObstacle(options) {
     function hitObstaleBySwordCheck(box, ninjaPhysicalBody) {
         if (box.collidesWith(ninjaPhysicalBody) && ninjaPhysicalBody.image === ninjaHittingImg) {
             box.spriteSheet = obstacleBrocken;
-            increaseScore(20);
-        }
-        return box;
+            return true;
+        } else
+            return false;
     }
 
     // 	let score = 0;
