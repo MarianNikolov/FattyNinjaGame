@@ -11,11 +11,25 @@
 <body>
 	<div id="game-canvas-container">
 		<canvas id="game-canvas" width="1024px" height="512px"></canvas>
+		<canvas id="game-canvas2" width="1024px" height="512px"></canvas>
 		<canvas id="background-canvas" width="1024px" height="512px"></canvas>
 		<a href="#" id="soundBtn">
-			<img src="./images/sound.png" id="soundOn" alt="Sound">
+			<img src="./images/sound.png" id="soundOnImg" alt="Sound">
 		</a>
-		<label id="lblScore">Score: 0</label>
+		<!-- 		<label id="lblScore">Score: 0</label> -->
+		<div id="scores" style="display: none">
+			<h2>SCORE</h2><br>
+			<h4>Highest:</h4>
+			<p id="highest-score"></p><br>
+			<h4 id="current-player"></h4>
+			<p id="current-score"></p>
+		</div>
+		<div id="pause-container" style="display: none">
+			<h2 id="visible_header">Game is paused</h2>
+			<a href="#" id="continue-button">Continue</a>
+
+	</div>
+
 	</div>
 
 	<img src="./images/FattyNinjaRunning.png" id="ninja-running" style="display: none" alt="Ninja Running">
@@ -24,7 +38,6 @@
 	<img src="./images/background.png" id="background" style="display: none" alt="Ninja Jumping">
 
 	<audio src="./sounds/music.mp3" id="music" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
-
 	<script src="./background.js"></script>
 	<script src="./gameGravity.js"></script>
 	<script src="./sprite.js"></script>
@@ -32,6 +45,9 @@
 	<script src="./physical-body.js"></script>
 	<script src="./sound-manipulation.js"></script>
 	<script src="./main.js"></script>
+	<script src="./scores.js"></script>
+
+
 </body>
 
 </html>

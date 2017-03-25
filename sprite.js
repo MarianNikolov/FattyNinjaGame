@@ -32,12 +32,12 @@ function createSprite(options) {
 	}
 
 	function render(drawCoordinates, clearCoordinates, gameWalkingLine) {
-		this.context.clearRect(
-			clearCoordinates.x - clearOffset,
-			clearCoordinates.y - clearOffset,
-			this.width + clearOffset * 2,
-			this.height + clearOffset * 2
-		);
+		// this.context.clearRect(
+		// 	clearCoordinates.x - clearOffset,
+		// 	clearCoordinates.y - clearOffset,
+		// 	this.width + clearOffset * 2,
+		// 	this.height + clearOffset * 2
+		// );
 
 		switchAnimationSprite(drawCoordinates.y, gameWalkingLine);
 

@@ -60,3 +60,14 @@ a:active {
 a:visited {
      color:black;
 }
+
+#scores {
+    position: absolute;
+    z-index: 20;
+    padding: 10px;
+}
+
+h2, h4, p{
+    display: inline;
+    font-family: myFont;
+}

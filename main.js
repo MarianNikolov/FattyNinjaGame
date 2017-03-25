@@ -1,14 +1,19 @@
 window.addEventListener('load', function () {
-	let gameCanvas = document.getElementById('game-canvas');
-	let gameContext = gameCanvas.getContext('2d');
+	let gameCanvas = document.getElementById('game-canvas'),
+		gameContext1 = gameCanvas.getContext('2d'),
+		gameContext = gameCanvas.getContext('2d'),
+		gameContext2 = document.getElementById('game-canvas2').getContext('2d');
 
-	let ninjaRunningImg = document.getElementById('ninja-running');
-	let ninjaJumpingImg = document.getElementById('ninja-jumping');
-	let obstacleCrateImg = document.getElementById('obstacle-crate');
-	let music = document.getElementById('music');
+	let ninjaRunningImg = document.getElementById('ninja-running'),
+		ninjaJumpingImg = document.getElementById('ninja-jumping'),
+		obstacleCrateImg = document.getElementById('obstacle-crate'),
+		music = document.getElementById('music'),
+		pauseContainer = document.getElementById('pause-container'),
+		pauseButton = document.getElementById('continue-button');
 
-	let gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10);
-	let crateYLine = gameCanvas.height - (obstacleCrateImg.height + 10);
+	let gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10),
+		crateYLine = gameCanvas.height - (obstacleCrateImg.height + 10),
+		isRunning = true;
 
 	let ninjaSprite = createSprite({
 		spriteSheets: [ninjaRunningImg, ninjaJumpingImg],
@@ -64,6 +69,14 @@ window.addEventListener('load', function () {
 		if (ev.keyCode === 40) {
 			ninjaPhysicalBody.speed.y = speed;
 		}
+		// p is pressed => game paused
+		if (ev.keyCode === 80) {
+			if (isRunning) {
+				pauseGame('pause');
+			} else {
+				pauseGame('continue');
+			}
+		}
 
 		//Ninja's coordinatesX to be in the canvas only
 		if ((ninjaPhysicalBody.coordinates.x > (gameWalkingLine * 2))) {
@@ -72,28 +85,57 @@ window.addEventListener('load', function () {
 			ninjaPhysicalBody.speed.x = +speed * 1.3;
 		}
 	});
+	pauseButton.addEventListener("click", function () {
+		pauseGame("continue");
+	});
 
 	let background = createBackground();
 
 	let gravity = gameGravity(gameWalkingLine);
+	function pauseGame(gameStatus) {
+		switch (gameStatus) {
+			case "continue":
+				isRunning = true;
+				pauseContainer.style.display = "none";
+				break;
+			case "pause":
+				isRunning = false;
+				pauseContainer.style.display = "";
+				break;
 
+			default:
+				break;
+		}
+	}
+
+	// I have changes here
+	let counter = 0;
 	function gameLoop() {
-		gravity.applyGravityVerticalY(ninjaPhysicalBody, 0.15);
-		gravity.removeAccelerationHorizontalX(ninjaPhysicalBody, 0.1);
+		counter += 1;
+		gameContext.clearRect(0, 0, gameContext.canvas.width, gameContext.canvas.height);
+		gameContext = counter % 2 === 1 ? gameContext2 : gameContext1;
 
-		let lastNinjaCoordinates = ninjaPhysicalBody.move();
-		ninjaSprite.render(ninjaPhysicalBody.coordinates, lastNinjaCoordinates, gameWalkingLine);
-		ninjaSprite.update();
+		if (isRunning) {
+			gravity.applyGravityVerticalY(ninjaPhysicalBody, 0.15);
+			gravity.removeAccelerationHorizontalX(ninjaPhysicalBody, 0.1);
 
-		obstacleCrateSprite.iterateObstaclesArray(ninjaPhysicalBody);
-		obstacleCrateSprite.spawnBoxHurdle();
+			let lastNinjaCoordinates = ninjaPhysicalBody.move();
+			ninjaSprite.render(ninjaPhysicalBody.coordinates, lastNinjaCoordinates, gameWalkingLine);
+			ninjaSprite.update();
 
-		background.render();
-		background.update();
+			obstacleCrateSprite.iterateObstaclesArray(ninjaPhysicalBody);
+			obstacleCrateSprite.spawnBoxHurdle();
+
+
+			background.render();
+
+			background.update();
+		}
 
 		window.requestAnimationFrame(gameLoop);
 	}
 
 	gameLoop();
 	regulateSound();
+	showScores();
 });
