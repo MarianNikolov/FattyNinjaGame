@@ -2,50 +2,51 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Fatty ninja game</title>
-	<link rel="icon" type="image/gif" href="./images/ninja-ico.png" />
-	<link rel="stylesheet" href="./styles.css">
+    <meta charset="UTF-8">
+    <title>Fatty ninja game</title>
+    <link rel="icon" type="image/gif" href="./images/ninja-ico.png" />
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-	<div id="game-canvas-container">
-		<canvas id="game-canvas" width="1024px" height="512px"></canvas>
-		<canvas id="game-canvas2" width="1024px" height="512px"></canvas>
-		<canvas id="background-canvas" width="1024px" height="512px"></canvas>
-		<a href="#" id="soundBtn">
-			<img src="./images/sound.png" id="soundOnImg" alt="Sound">
-		</a>
-		<!-- 		<label id="lblScore">Score: 0</label> -->
-		<div id="scores" style="display: none">
-			<h2>SCORE</h2><br>
-			<h4>Highest:</h4>
-			<p id="highest-score"></p><br>
-			<h4 id="current-player"></h4>
-			<p id="current-score"></p>
-		</div>
-		<div id="pause-container" style="display: none">
-			<h2 id="visible_header">Game is paused</h2>
-			<a href="#" id="continue-button">Continue</a>
+    <div id="game-canvas-container">
+        <canvas id="game-canvas" width="1024px" height="512px"></canvas>
+        <canvas id="game-canvas2" width="1024px" height="512px"></canvas>
+        <canvas id="background-canvas" width="1024px" height="512px"></canvas>
+        <a href="#" id="soundBtn">
+            <img src="./images/sound.png" id="soundOnImg" alt="Sound">
+        </a>
+        <!-- 		<label id="lblScore">Score: 0</label> -->
+        <div id="scores" style="display: none">
+            <h2>SCORE</h2><br>
+            <h4>Highest:</h4>
+            <p id="highest-score"></p><br>
+            <h4 id="current-player"></h4>
+            <p id="current-score"></p>
+        </div>
+        <div id="pause-container" style="display: none">
+            <h2 id="visible_header">Game is paused</h2>
+            <a href="#" id="continue-button">Continue</a>
 
-	</div>
+        </div>
 
-	</div>
+    </div>
 
-	<img src="./images/FattyNinjaRunning.png" id="ninja-running" style="display: none" alt="Ninja Running">
-	<img src="./images/FattyNinjaJumping.png" id="ninja-jumping" style="display: none" alt="Ninja Jumping">
-	<img src="./images/obstacle-crate.png" id="obstacle-crate" style="display: none" alt="Obstacle Crate">
-	<img src="./images/background.png" id="background" style="display: none" alt="Ninja Jumping">
+    <img src="./images/FattyNinjaRunning.png" id="ninja-running" style="display: none" alt="Ninja Running">
+    <img src="./images/FattyNinjaJumping.png" id="ninja-jumping" style="display: none" alt="Ninja Jumping">
+    <img src="./images/Ninja_sword_hit.png" id="ninja-hitting" style="display: none" alt="Ninja Hitting">
+    <img src="./images/obstacle-crate.png" id="obstacle-crate" style="display: none" alt="Obstacle Crate">
+    <img src="./images/background.png" id="background" style="display: none" alt="Ninja Jumping">
 
-	<audio src="./sounds/music.mp3" id="music" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
-	<script src="./background.js"></script>
-	<script src="./gameGravity.js"></script>
-	<script src="./sprite.js"></script>
-	<script src="./obstacles.js"></script>
-	<script src="./physical-body.js"></script>
-	<script src="./sound-manipulation.js"></script>
-	<script src="./main.js"></script>
-	<script src="./scores.js"></script>
+    <audio src="./sounds/music.mp3" id="music" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
+    <script src="./background.js"></script>
+    <script src="./gameGravity.js"></script>
+    <script src="./sprite.js"></script>
+    <script src="./obstacles.js"></script>
+    <script src="./physical-body.js"></script>
+    <script src="./sound-manipulation.js"></script>
+    <script src="./main.js"></script>
+    <script src="./scores.js"></script>
 
 
 </body>

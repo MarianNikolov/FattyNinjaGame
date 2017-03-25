@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
 
 	let ninjaRunningImg = document.getElementById('ninja-running'),
 		ninjaJumpingImg = document.getElementById('ninja-jumping'),
+		ninjaHittingImg = document.getElementById('ninja-hitting'),
 		obstacleCrateImg = document.getElementById('obstacle-crate'),
 		music = document.getElementById('music'),
 		pauseContainer = document.getElementById('pause-container'),
