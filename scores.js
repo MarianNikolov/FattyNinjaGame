@@ -6,11 +6,11 @@
             localStorage.setItem('first', 0);
         }
         highestScore.innerHTML = highestScoreValue;
-        if(document.title === 'Fatty ninja game') {
+        if (document.title === 'Fatty ninja game') {
             localStorage.setItem('you', 0);
         }
         let currentPlayer = document.getElementById('current-player');
-        if(playerName) {
+        if (playerName) {
             currentPlayer.innerHTML = playerName + ': ';
         } else {
             currentPlayer.innerHTML = 'You: ';
@@ -20,14 +20,15 @@
         scoresDisplay.style.display = 'block';
     }
 
-    function increaseScore() {
+    function increaseScore(points) {
+        points = points || 10;
         let currentScore = document.getElementById('current-score');
-        currentScore.innerHTML = +currentScore.innerHTML + 10;
+        currentScore.innerHTML = +currentScore.innerHTML + points;
     }
 
     function updateScores(currentScore) {
         localStorage.setItem('you', currentScore);
         if (+localStorage['you'] > +localStorage['first']) {
             localStorage.setItem('first', currentScore);
-    }
+        }
     }

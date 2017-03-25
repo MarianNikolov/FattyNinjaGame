@@ -30,7 +30,8 @@ window.addEventListener('load', function() {
         coordinates: { x: 30, y: gameWalkingLine / 2 },
         speed: { x: 0, y: 0 },
         height: ninjaSprite.height,
-        width: ninjaSprite.width * 2 / 3
+        width: ninjaSprite.width * 2 / 3,
+        image: ninjaRunningImg
     });
 
     let obstacleCrateSprite = createObstacle({
@@ -84,9 +85,10 @@ window.addEventListener('load', function() {
         // Ctrl is pressed => hit
         if (ev.keyCode === 17) {
             let now = Date.now();
-            if (now - lastPressCtrl < ctrlKeyRepeatDuration)
+            if (now - lastPressCtrl < ctrlKeyRepeatDuration) {
+                ninjaPhysicalBody.image = null;
                 return;
-            else {
+            } else {
                 lastPressCtrl = now;
                 ninjaSprite.spriteSheet = ninjaHittingImg;
                 ninjaSprite.width = ninjaHittingImg.width / 2;
@@ -94,6 +96,7 @@ window.addEventListener('load', function() {
                 ninjaSprite.loopTicksPerFrame = 10;
                 ninjaSprite.numberOfFrames = 2;
                 ninjaSprite.frameIndex = 0;
+                ninjaPhysicalBody.image = ninjaHittingImg;
             }
         }
 
@@ -105,6 +108,11 @@ window.addEventListener('load', function() {
         }
     });
 
+    window.addEventListener('keyup', function(ev) {
+        if (ev.keyCode === 17) {
+            ninjaPhysicalBody.image = null;
+        }
+    });
     pauseButton.addEventListener("click", function() {
         pauseGame("continue");
     });
@@ -147,7 +155,6 @@ window.addEventListener('load', function() {
 
             obstacleCrateSprite.iterateObstaclesArray(ninjaPhysicalBody);
             obstacleCrateSprite.spawnBoxHurdle();
-
 
             background.render();
 
