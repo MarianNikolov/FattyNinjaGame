@@ -44,7 +44,7 @@ window.addEventListener('load', function() {
         loopTicksPerFrame: 1
     });
 
-    let ctrlKeyRepeatDuration = 500, //interval in miliseconds to allow ninja to hit obsticales
+    let ctrlKeyRepeatDuration = 1000, //interval in miliseconds to allow ninja to hit obsticales
         lastPressCtrl = Date.now();
     window.addEventListener('keydown', function(ev) {
         let speed = 4;
@@ -82,7 +82,7 @@ window.addEventListener('load', function() {
         }
 
         // Ctrl is pressed => hit
-        if (ev.keyCode === 90) {
+        if (ev.keyCode === 17) {
             let now = Date.now();
             if (now - lastPressCtrl < ctrlKeyRepeatDuration)
                 return;
