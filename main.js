@@ -45,8 +45,8 @@ window.addEventListener('load', function() {
         loopTicksPerFrame: 1
     });
 
-    let ctrlKeyRepeatDuration = 1000, //interval in miliseconds to allow ninja to hit obsticales
-        lastPressCtrl = Date.now();
+    let keyRepeatDuration = 1000, //interval in miliseconds to allow ninja to hit again obsticales
+        lastHitPressed = Date.now(); //the time of first hit
     window.addEventListener('keydown', function(ev) {
         let speed = 4;
 
@@ -82,14 +82,16 @@ window.addEventListener('load', function() {
             }
         }
 
-        // Ctrl is pressed => hit
-        if (ev.keyCode === 17) {
+        // Space is pressed => hit
+        if (ev.keyCode === 32) {
+            //Do not allow repeated hit => the hit by sword can accure at least 
+            //{ctrlKeyRepeatDuration} miiseconds after previous hit
             let now = Date.now();
-            if (now - lastPressCtrl < ctrlKeyRepeatDuration) {
+            if (now - lastHitPressed < keyRepeatDuration) {
                 ninjaPhysicalBody.image = null;
                 return;
             } else {
-                lastPressCtrl = now;
+                lastHitPressed = now;
                 ninjaSprite.spriteSheet = ninjaHittingImg;
                 ninjaSprite.width = ninjaHittingImg.width / 2;
                 ninjaSprite.height = ninjaHittingImg.height;
@@ -109,7 +111,7 @@ window.addEventListener('load', function() {
     });
 
     window.addEventListener('keyup', function(ev) {
-        if (ev.keyCode === 17) {
+        if (ev.keyCode === 32) {
             ninjaPhysicalBody.image = null;
         }
     });

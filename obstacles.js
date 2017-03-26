@@ -98,7 +98,8 @@ function createObstacle(options) {
             }
 
             let lastObstacleCrateCoordinates = box.move();
-            if (hitObstaleBySwordCheck(box, ninjaPhysicalBody)) {
+
+            if (box.spriteSheet !== obstacleBrocken && hitObstaleBySwordCheck(box, ninjaPhysicalBody)) {
                 increaseScore(20);
             }
             this.render(box, box.coordinates, lastObstacleCrateCoordinates);
