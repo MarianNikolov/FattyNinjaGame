@@ -81,7 +81,7 @@ window.addEventListener('load', function() {
     var keyRepeatDuration = 1000, //interval in miliseconds to allow ninja to hit again obsticales
         lastHitPressed = Date.now(); //the time of first hit
     window.addEventListener('keydown', function(ev) {
-        let speed = 4;
+        var speed = 4;
 
         // left arrow => walk left
         if (ev.keyCode === 37) {
