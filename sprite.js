@@ -1,5 +1,5 @@
 function createSprite(options) {
-    let sprite = {
+    var sprite = {
         spriteSheets: options.spriteSheets,
         spriteSheet: options.spriteSheets[1],
         context: options.context,
@@ -14,7 +14,7 @@ function createSprite(options) {
         switchAnimationSprite: switchAnimationSprite
     };
 
-    let clearOffset = 20;
+    var clearOffset = 20;
 
     function isJumping(yCoordinate, gameWalkingLine) {
         if (yCoordinate !== gameWalkingLine) {
