@@ -1,8 +1,8 @@
 function regulateSound(){
 
-    let soundButton = document.getElementById('soundBtn');
-    let audioElement = document.getElementById('music');
-    let onImage = document.getElementById('soundOnImg');
+    var soundButton = document.getElementById('soundBtn');
+    var audioElement = document.getElementById('music');
+    var onImage = document.getElementById('soundOnImg');
 
     soundButton.addEventListener('click', function(){
         if(!audioElement.muted){
