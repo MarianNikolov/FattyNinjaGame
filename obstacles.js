@@ -1,11 +1,11 @@
 function createObstacle(options) {
-    let obstacles = [],
+    var obstacles = [],
         ninjaHittingImg = document.getElementById('ninja-hitting'),
         obstacleBrocken = document.getElementById('obstacle-brocken'),
         obstacleNormal = document.getElementById('obstacle-crate');
 
 
-    let obstacle = {
+    var obstacle = {
         spriteSheets: options.spriteSheets,
         spriteSheet: options.spriteSheets[0],
         context: options.context,
@@ -23,7 +23,7 @@ function createObstacle(options) {
         iterateObstaclesArray: iterateObstaclesArray
     };
 
-    let clearOffset = 0;
+    var clearOffset = 0;
 
     function render(box, drawCoordinates, clearCoordinates) {
         // this.context.clearRect(
@@ -97,7 +97,7 @@ function createObstacle(options) {
                 continue;
             }
 
-            let lastObstacleCrateCoordinates = box.move();
+            var lastObstacleCrateCoordinates = box.move();
 
             if (box.spriteSheet !== obstacleBrocken && hitObstaleBySwordCheck(box, ninjaPhysicalBody)) {
                 increaseScore(20);
