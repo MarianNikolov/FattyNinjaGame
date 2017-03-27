@@ -1,7 +1,7 @@
 function createBackground() {
-	let backgroundCanvas = document.getElementById('background-canvas');
-	let backgroundContext = backgroundCanvas.getContext('2d');
-	let backgroundImg = document.getElementById('background');
+	var backgroundCanvas = document.getElementById('background-canvas');
+	var backgroundContext = backgroundCanvas.getContext('2d');
+	var backgroundImg = document.getElementById('background');
 
 	function render() {
 		backgroundContext.drawImage(
