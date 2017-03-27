@@ -1,7 +1,7 @@
 function createPhysicalBody(options, image) {
     function move() {
         //clone this.coordinates object
-        let lastCoordinates = { x: this.coordinates.x, y: this.coordinates.y };
+        var lastCoordinates = { x: this.coordinates.x, y: this.coordinates.y };
 
         this.coordinates.x += this.speed.x;
         this.coordinates.y += this.speed.y;
@@ -26,7 +26,7 @@ function createPhysicalBody(options, image) {
         }
     }
 
-    let physicalBody = {
+    var physicalBody = {
         coordinates: options.coordinates,
         speed: options.speed,
         height: options.height,
