@@ -119,7 +119,7 @@ window.addEventListener('load', function() {
         if (ev.keyCode === 32) {
             //Do not allow repeated hit => the hit by sword can accure at least 
             //{ctrlKeyRepeatDuration} miiseconds after previous hit
-            let now = Date.now();
+            var now = Date.now();
             if (now - lastHitPressed < keyRepeatDuration) {
                 ninjaPhysicalBody.image = null;
                 return;
