@@ -41,6 +41,27 @@
     text-decoration: none;
 }
 
+#back-to-main-menu {
+    font-size: 30px;
+    font-family: myFont;
+    font-weight: bold;
+    font: black;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 15;
+    display: block;
+    padding: 5px;
+    margin-left: 360px;
+    margin-right: 330px;
+    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+    color: black;
+    background: #E8871D;
+    text-decoration: none;
+}
+
 canvas {
     position: absolute;
 }
@@ -85,4 +106,6 @@ canvas {
 h2, h4, p{
     display: inline;
     font-family: myFont;
+}
+;
 }
