@@ -1,10 +1,43 @@
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+
+// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+
+// MIT license
+
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+                                   || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());
+
+
 window.addEventListener('load', function() {
-    let gameCanvas = document.getElementById('game-canvas'),
+    var gameCanvas = document.getElementById('game-canvas'),
         gameContext1 = gameCanvas.getContext('2d'),
         gameContext = gameCanvas.getContext('2d'),
         gameContext2 = document.getElementById('game-canvas2').getContext('2d');
 
-    let ninjaRunningImg = document.getElementById('ninja-running'),
+    var ninjaRunningImg = document.getElementById('ninja-running'),
         ninjaJumpingImg = document.getElementById('ninja-jumping'),
         ninjaHittingImg = document.getElementById('ninja-hitting'),
         obstacleCrateImg = document.getElementById('obstacle-crate'),
@@ -12,11 +45,11 @@ window.addEventListener('load', function() {
         pauseContainer = document.getElementById('pause-container'),
         pauseButton = document.getElementById('continue-button');
 
-    let gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10),
+    var gameWalkingLine = gameCanvas.height - (ninjaRunningImg.height + 10),
         crateYLine = gameCanvas.height - (obstacleCrateImg.height + 10),
         isRunning = true;
 
-    let ninjaSprite = createSprite({
+    var ninjaSprite = createSprite({
         spriteSheets: [ninjaRunningImg, ninjaJumpingImg, ninjaHittingImg],
         spriteSheet: ninjaRunningImg,
         context: gameContext,
@@ -26,7 +59,7 @@ window.addEventListener('load', function() {
         loopTicksPerFrame: 5
     });
 
-    let ninjaPhysicalBody = createPhysicalBody({
+    var ninjaPhysicalBody = createPhysicalBody({
         coordinates: { x: 30, y: gameWalkingLine / 2 },
         speed: { x: 0, y: 0 },
         height: ninjaSprite.height,
@@ -34,7 +67,7 @@ window.addEventListener('load', function() {
         image: ninjaRunningImg
     });
 
-    let obstacleCrateSprite = createObstacle({
+    var obstacleCrateSprite = createObstacle({
         spriteSheets: [obstacleCrateImg],
         spriteSheet: obstacleCrateImg,
         context: gameContext,
@@ -45,7 +78,7 @@ window.addEventListener('load', function() {
         loopTicksPerFrame: 1
     });
 
-    let keyRepeatDuration = 1000, //interval in miliseconds to allow ninja to hit again obsticales
+    var keyRepeatDuration = 1000, //interval in miliseconds to allow ninja to hit again obsticales
         lastHitPressed = Date.now(); //the time of first hit
     window.addEventListener('keydown', function(ev) {
         let speed = 4;
@@ -119,9 +152,9 @@ window.addEventListener('load', function() {
         pauseGame("continue");
     });
 
-    let background = createBackground();
+    var background = createBackground();
 
-    let gravity = gameGravity(gameWalkingLine);
+    var gravity = gameGravity(gameWalkingLine);
 
     function pauseGame(gameStatus) {
         switch (gameStatus) {
@@ -140,7 +173,7 @@ window.addEventListener('load', function() {
     }
 
     // I have changes here
-    let counter = 0;
+    var counter = 0;
 
     function gameLoop() {
         counter += 1;
@@ -151,7 +184,7 @@ window.addEventListener('load', function() {
             gravity.applyGravityVerticalY(ninjaPhysicalBody, 0.15);
             gravity.removeAccelerationHorizontalX(ninjaPhysicalBody, 0.1);
 
-            let lastNinjaCoordinates = ninjaPhysicalBody.move();
+            var lastNinjaCoordinates = ninjaPhysicalBody.move();
             ninjaSprite.render(ninjaPhysicalBody.coordinates, lastNinjaCoordinates, gameWalkingLine);
             ninjaSprite.update();
 
