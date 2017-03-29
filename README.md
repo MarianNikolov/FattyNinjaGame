@@ -17,7 +17,7 @@ of reaching his only goal:
 - Ivaylo Damyanov - IvayloDamyanov
 - Dimitar Popov - molivpopov
 - Marian Nikolov - MarianNikolov
-- - Didexe
+- Daniel Petrov- Didexe
 
 
 ## Controls(keyboard) 
