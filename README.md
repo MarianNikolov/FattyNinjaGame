@@ -39,5 +39,5 @@ https://github.com/MarianNikolov/FattyNinjaGame
 
 
 ## YouTube Video
-https://www.youtube.com/watch?v=H08ENvalvEw&feature=youtu.be
+https://youtu.be/gUYV0kcAIR8
 
