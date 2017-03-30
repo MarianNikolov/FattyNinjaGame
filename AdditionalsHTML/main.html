@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fatty ninja game</title>
+    <link rel="icon" type="image/gif" href="../images/ninja-ico.png" />
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+
+<body>
+    <div id="game-canvas-container">
+        <canvas id="game-canvas" width="1024px" height="512px"></canvas>
+        <canvas id="game-canvas2" width="1024px" height="512px"></canvas>
+        <canvas id="background-canvas" width="1024px" height="512px"></canvas>
+        <a href="#" id="soundBtn">
+            <img src="../images/sound.png" id="soundOnImg" alt="Sound">
+        </a>
+        <img src="../images/soundOff.png" id="soundOffImg" alt="Sound">
+        <div id="scores" style="display: none">
+            <h2>SCORE</h2><br>
+            <h4>Highest:</h4>
+            <p id="highest-score"></p><br>
+            <h4 id="current-player"></h4>
+            <p id="current-score"></p>
+        </div>
+        <div id="pause-container" style="display: none">
+            <h2 id="visible_header">Game is paused</h2>
+            <a href="#" id="continue-button">Continue</a>
+            <a href="../index.html" id="back-to-main-menu">Back to main menu</a>
+
+        </div>
+
+    </div>
+
+    <!--images of money is compiling here-->
+    <div id='imgMoney'></div>
+
+    <!--images Ninja-->
+    <img src="../images/separatedImages/FattyNinjaRunning1.png" id="ninja-running1" style="display: none">
+    <img src="../images/separatedImages/FattyNinjaRunning2.png" id="ninja-running2" style="display: none">
+    <img src="../images/separatedImages/FattyNinjaRunning3.png" id="ninja-running3" style="display: none">
+    <img src="../images/separatedImages/FattyNinjaRunning4.png" id="ninja-running4" style="display: none">
+    <img src="../images/separatedImages/FattyNinjaJumping1.png" id="ninja-jumping1" style="display: none">
+    <img src="../images/separatedImages/Ninja_sword_hit-1.png" id="ninja-hit1" style="display: none">
+    <img src="../images/separatedImages/Ninja_sword_hit-2.png" id="ninja-hit2" style="display: none">
+
+    <!--images Obstacle => barrel + chest-->
+    <img src="../images/separatedImages/animated-bomb-image-0007-1.png" id="obstacle-bomb1" style="display: none">
+    <img src="../images/separatedImages/animated-bomb-image-0007-2.png" id="obstacle-bomb2" style="display: none">
+    <img src="../images/separatedImages/animated-bomb-image-0007-3.png" id="obstacle-bomb3" style="display: none">
+    <img src="../images/separatedImages/animated-bomb-image-0007-4.png" id="obstacle-bomb4" style="display: none">
+    <img src="../images/separatedImages/animated-bomb-image-0007-5.png" id="obstacle-bomb5" style="display: none">
+    <img src="../images/obstacle-crate.png" id="obstacle-crate" style="display: none" alt="Obstacle Crate">
+    <img src="../images/obstacle-broken.png" id="obstacle-brocken" style="display: none" alt="Obstacle Brocken">
+
+    <!--images Bonus-->
+    <img src="../images/separatedImages/animated-ball-image-0029-1.png" id="bonus-ball1" style="display: none">
+    <img src="../images/separatedImages/animated-ball-image-0029-2.png" id="bonus-ball2" style="display: none">
+    <img src="../images/separatedImages/animated-ball-image-0029-3.png" id="bonus-ball3" style="display: none">
+    <img src="../images/separatedImages/animated-ball-image-0029-4.png" id="bonus-ball4" style="display: none">
+    <img src="../images/separatedImages/animated-ball-image-0029-5.png" id="bonus-ball5" style="display: none">
+    <img src="../images/separatedImages/animated-ball-image-0029-6.png" id="bonus-ball6" style="display: none">
+
+    <!--sound effects-->
+    <audio src="../sounds/explosion-01.mp3" id="explosion" type="audio/mpeg"></audio>
+    <audio src="../sounds/cash-register-05.wav" id="cash" type="audio/wav"></audio>
+
+    <!--music-->
+    <audio src="../sounds/music.mp3" id="music" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
+
+    <!--images => background-->
+    <img src="../images/background.png" id="background" style="display: none" alt="Ninja Jumping">
+
+    <!--JS-->
+    <script src="../js/background.js"></script>
+    <script src="../js/sound-manipulation.js"></script>
+    <script src="../js/Constants.js"></script>
+    <script src="../js/Validations.js"></script>
+    <script src="../js/scores.js"></script>
+    <script src="../js/classes/Body.js"></script>
+    <script src="../js/classes/MovingObj.js"></script>
+    <script src="../js/classes/Ninja.js"></script>
+    <script src="../js/classes/Bonus.js"></script>
+    <script src="../js/classes/Obstacale.js"></script>
+    <script src="../js/InitBodys.js"></script>
+    <script src="../js/main.js"></script>
+
+</body>
+
+</html>
