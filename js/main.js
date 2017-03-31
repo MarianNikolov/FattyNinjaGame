@@ -31,6 +31,12 @@ window.addEventListener('load', function () {
 		if (ev.keyCode === Constants.KEY_P) {
 			pauseGame();
 		}
+		// enter to cacel pause
+		if (ev.keyCode === Constants.KEY_ENTER) {
+			if (!isRunning){
+				pauseGame();
+			}
+		}
 		// space is pressed => hit sword
 		if (ev.keyCode === Constants.KEY_SPACE) {
 			ninja.hit();
@@ -58,13 +64,12 @@ window.addEventListener('load', function () {
 	}
 
 	function gameLoop() {
-		CreatObstacle([bomb, chest], explidingBomb);
-		CreatBonus([ball, ballCrushed, arrayOfMoney]);
-		indexOfContext = 1 - indexOfContext;
-		gameContext.clearRect(0, 0, gameContext.canvas.width, gameContext.canvas.height);
-		gameContext = gameContexts[indexOfContext];
-
 		if (isRunning) {
+			indexOfContext = 1 - indexOfContext;
+			gameContext.clearRect(0, 0, gameContext.canvas.width, gameContext.canvas.height);
+			gameContext = gameContexts[indexOfContext];
+			CreatObstacle([bomb, chest], explidingBomb);
+			CreatBonus([ball, ballCrushed, arrayOfMoney]);
 			counter += 1;
 			if (ninja.isAlive) {
 				ninja
