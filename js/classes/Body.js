@@ -44,18 +44,17 @@ class Body {
 
     // methods
     indexSprite(index) {
-        index = index >= this.sprites.length ? 0 : index;
         this.context.drawImage(this.sprites[index].img, this.x, this.y)
-        // this.tryStroke(); // this command show the red contour - collising contour
+        // this.drawCollisionStroke(); // this command show the red contour - collising contour
         return this
     }
 
     nextSprite() {
-        this.indexSprite(this.spriteNumber);
         if (!this._getTime()) {
             this.spriteNumber += 1;
         }
-        this.spriteNumber = this.spriteNumber >= this.sprites.length ? 0 : this.spriteNumber;
+        this.spriteNumber %= this.sprites.length;
+        this.indexSprite(this.spriteNumber);
         return this
     }
 
@@ -63,18 +62,23 @@ class Body {
         if (!this.isAlive) {
             return false
         }
+
+        //precalculate collision contour of otherBody to glabal coordinates
         let polygon = [];
         otherBody.sprites[otherBody.spriteNumber].cut
             .forEach(x => polygon.push([x[0] + otherBody.x, x[1] + otherBody.y]));
 
-        //check if every point of cutting contour overlap from two object
-        for (let index = 0; index < this.sprites[this.spriteNumber].cut.length; index++) {
-            let element = this.sprites[this.spriteNumber].cut[index].slice();
-            element[0] += this.x; element[1] += this.y;
+        //check if at least one point of this collision contour
+        //is inside of otherBody's collision contour
+        for (let i = 0; i < this.sprites[this.spriteNumber].cut.length; i++) {
+            let element = this.sprites[this.spriteNumber].cut[i].slice();
+            element[0] += this.x; // set cutting x
+            element[1] += this.y; // set cutting y
             if (this._isPointInPoligon(element, polygon)) {
                 return true
             }
         }
+
         return false
     }
 
@@ -89,10 +93,15 @@ class Body {
         return false;
     }
 
-    tryStroke() {
+    drawCollisionStroke() {
         this.context.beginPath();
-        this.context.moveTo(this.x + this.sprites[0].cut[0][0], this.y + this.sprites[0].cut[0][1]);
-        this.sprites[0].cut.forEach(x => this.context.lineTo(this.x + x[0], this.y + x[1]));
+        this.context.moveTo
+            (
+            this.x + this.sprites[0].cut[0][0],
+            this.y + this.sprites[0].cut[0][1]
+            );
+        this.sprites[0].cut.
+            forEach(x => this.context.lineTo(this.x + x[0], this.y + x[1]));
         this.context.closePath();
         this.context.strokeStyle = "red";
         this.context.stroke();
